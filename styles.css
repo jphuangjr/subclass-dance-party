@@ -25,3 +25,13 @@ body, a:link, a:visited, a:active{
   border-radius:10px;
   position:absolute;
 }
+.drake{
+  border:10px solid yellow;
+  border-radius:10px;
+  position:absolute;
+}
+.bieber{
+  border:10px solid blue;
+  border-radius:10px;
+  position:absolute;
+}
