@@ -1,30 +1,32 @@
 var canvas, ctx, sprites,
-    width = 100,
-    height = 100,
+    width = 200,
+    height = 200,
     rightKey = false,
     leftKey = false,
     upKey = false,
     downKey = false,
-    ship_x = (width / 2) - 30, ship_y = height - 145, ship_w = 15, ship_h = 65,
-    srcX = 6, srcY = -20;
+    ship_x = (width / 2) - 10, ship_y = height - 45, ship_w = 17, ship_h = 17,
+    srcX = 26, srcY = 23;
 
 var rightSwitch = false;
 var leftSwitch = false;
+var downSwitch = false;
+var upSwitch = false;
 
 function clearCanvas() {
-  ctx.clearRect(0,0,500,400);
+  ctx.clearRect(0,0,2000,2000);
 }
 function drawShip() {
   if (rightKey) {
       if(rightSwitch === false){
           ship_x += 5;
           srcX = 26;
-          srcY = -20;
+          srcY = 23;
           rightSwitch = true;
       } else if(rightSwitch === true){
           ship_x += 5;
           srcX = 6;
-          srcY = -20;
+          srcY = 23;
           rightSwitch = false;
       }
 
@@ -32,20 +34,45 @@ function drawShip() {
       if(leftSwitch === false){
           ship_x -= 5;
           srcX = 6;
-          srcY = -40;
+          srcY = 3;
           leftSwitch = true;
       } else if(leftSwitch === true){
           ship_x -= 5;
           srcX = 26;
-          srcY = -40;
+          srcY = 3;
           leftSwitch = false;
+      }
+  } else if (downKey) {
+      if (downSwitch === false) {
+          ship_y += 5;
+          srcX = 6;
+          srcY = 63;
+          downSwitch = true;
+      } else if (downSwitch === true) {
+          ship_y += 5;
+          srcX = 26;
+          srcY = 63;
+          downSwitch = false;
+      }
+  }
+  else if (upKey) {
+      if (upSwitch === false) {
+          ship_y -= 5;
+          srcX = 6;
+          srcY = 43;
+          upSwitch = true;
+      } else if (upSwitch === true) {
+          ship_y -= 5;
+          srcX = 26;
+          srcY = 43;
+          upSwitch = false;
       }
   }
     //context.drawImage(img,sx,sy,swidth,sheight,x,y,width,height);
   ctx.drawImage(sprites,srcX,srcY,ship_w,ship_h,ship_x,ship_y,ship_w,ship_h);
-  //if (rightKey == false || leftKey == false) {
-  //  srcX = 6;
-  //}
+  if (rightKey == false || leftKey == false) {
+    srcX = 6;
+  }
 }
 function loop() {
   clearCanvas();
@@ -54,10 +81,14 @@ function loop() {
 function keyDown(e) {
   if (e.keyCode == 39) rightKey = true;
   else if (e.keyCode == 37) leftKey = true;
+    else if(e.keyCode == 38) upKey = true;
+    else if(e.keyCode == 40) downKey = true;
 }
 function keyUp(e) {
   if (e.keyCode == 39) rightKey = false;
   else if (e.keyCode == 37) leftKey = false;
+  else if(e.keyCode == 38) upKey = false;
+  else if(e.keyCode == 40) downKey = false;
 }
 (function init() {
   canvas = document.getElementById('canvas');
