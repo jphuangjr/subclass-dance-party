@@ -75,8 +75,18 @@ function drawShip() {
   }
 }
 function loop() {
+  // console.log("clientHeight: ",document.body.clientHeight)
+  // console.log("clientWidth: ",document.body.clientWidth)
   clearCanvas();
   drawShip();
+  if(window.dancers.length > 0){
+    // console.log('pacman: ', ship_y+20);
+    // console.log('ghost: ', Math.round(window.dancers[0].$node.position().top));
+    if(Math.abs(Math.round(ship_x) - Math.round(window.dancers[0].$node.position().left)) < 17 && Math.abs(Math.round(ship_y + 20) - Math.round(window.dancers[0].$node.position().top)) < 17){
+      console.log("collided");
+    }
+  }
+  
 }
 function keyDown(e) {
   if (e.keyCode == 39) rightKey = true;

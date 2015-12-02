@@ -8,6 +8,75 @@
     <script src="src/blinkyDancer.js"></script>
     <script src="src/drakeDancer.js"></script>
     <script src="src/bieberDancer.js"></script>
+    <script>
+    $(document).ready(function(){
+      $("canvas").css({"width": document.body.clientWidth, "height": document.body.clientHeight});
+      $("canvas").click(function(){
+        var blinky = $(".dancer");
+        var direct = Math.random() * 100;
+
+        var moveLeft = true;
+        var moveTop = true;
+        //////////////////////////////////////////////////////////////////////////
+        // while(moveLeft) {
+        //   if ( (blinky.position().left - 1) < 0 ) {
+        //     moveLeft = false;
+        //   }
+        //   blinky.animate({
+        //     left: "-=10px",
+        //   }, 1000);
+        // }
+        // while(moveLeft === false) {
+        //   if ( (blinky.position().left + 1) > document.body.clientWidth) {
+        //     moveLeft = true;
+        //   }
+        //   blinky.animate({
+        //     left: "+=1px",
+        //   }, 1);
+        // }
+        ////////////////////////////////////////////////////////////////////////////
+
+        // if (direct > 75) {
+        //   blinky.animate({ 
+        //     left: "-=500px",
+        //   }, 4500 );
+        // } else if(direct > 50 && direct =< 75){          
+        //   blinky.animate({ 
+        //     left: "+=500px",
+        //   }, 4500 );
+        // } else if(direct >= 25 && direct <= 50){
+        //   blinky.animate({ 
+        //     top: "+=500px",
+        //   }, 4500 );
+        // } else if (direct < 25 ){
+        //   blinky.animate({ 
+        //     top: "-=500px",
+        //   }, 4500 );
+        // }
+
+        /////////////////////////////////////////////////////////////////////////////        
+
+        if (direct > 50 && direct <=75) {
+          blinky.animate({ 
+            top: "-=250px",
+          }, 2000 );
+        } else if(direct <= 50 && direct >= 25) {          
+          blinky.animate({ 
+            top: "+=250px",
+          }, 2000 );
+        } else if(direct < 25){
+          blinky.animate({ 
+            left: "+=250px",
+          }, 2000 );
+        } else if(direct > 75){
+          blinky.animate({ 
+            left: "-=250px",
+          }, 2000 );
+        }
+      })
+    });
+
+    </script>
   </head>
   <body>
     <div class="topbar">
@@ -15,8 +84,9 @@
       <a href="#" class="addDancerButton" data-dancer-maker-function-name="BlinkyDancer">add a blinky dancer</a>    
       <a href="#" class="addDancerButton" data-dancer-maker-function-name="DrakeDancer">add a Drake dancer</a>
       <a href="#" class="addDancerButton" data-dancer-maker-function-name="BieberDancer">add a Bieber dancer</a>
+      <a href="#" class="lineUp">Line up</a>
     </div>
-    <canvas id="canvas" width="1000" height="1000"></canvas>
+    <canvas id="canvas" width="1500" height="800"></canvas>
     <script src="src/init.js"></script>
     <script src="src/pacman.js"></script>
   </body>
